@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
+
   form: FormGroup;                    // {1}
   private formSubmitAttempt: boolean; // {2}
 
@@ -18,9 +18,12 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.form = this.fb.group({     // {5}
+    this.form = this.fb.group({
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      verifyPassword: ['', Validators.required]
     });
   }
 
@@ -34,8 +37,11 @@ export class LoginComponent implements OnInit {
 
   getErrorMessage(field: string) {
     const messages = {
-      email: "Please enter your email",
-      password: "Please enter your password"
+      email: "Please enter email with valid format",
+      password: "Please enter your password",
+      verifyPassword: "Passwords must match",
+      firstname: "Please eneter your name",
+      lastname: "Please eneter your last name",
     }
 
     return messages[field];
@@ -47,8 +53,13 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
-      this.authService.login(this.form.value); // {7}
+      if (this.form.controls.password.value !== this.form.controls.verifyPassword.value) {
+        this.form.controls.verifyPassword.setErrors({'incorrect': true});
+      } else {
+        this.authService.register(this.form.value);
+      }
     }
-    this.formSubmitAttempt = true;             // {8}
+    this.formSubmitAttempt = true;
   }
+
 }

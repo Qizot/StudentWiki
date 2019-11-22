@@ -1,0 +1,111 @@
+<div class="container-fluid h-100 login-background">
+  <div class="row justify-content-center align-items-center vh-100">
+    <div class="card">
+      <article class="card-body">
+        <h4 class="card-title text-center mb-4 mt-1">Sign in</h4>
+        <hr />
+        <p class="text-success text-center">
+          Enter all necessary data to register!
+        </p>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="form-group has-danger">
+            <div class="input-group">
+              <input
+                formControlName="firstname"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': isFieldInvalid('firstname') }"
+                placeholder="Name"
+                type="text"
+              />
+            </div>
+            <div *ngIf="isFieldInvalid('firstname')" class="invalid-feedback d-clock">
+                {{ getErrorMessage("firstname") }}
+            </div>
+          </div>
+
+          <div class="form-group has-danger">
+            <div class="input-group">
+              <input
+                formControlName="lastname"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': isFieldInvalid('lastname') }"
+                placeholder="Last name"
+                type="text"
+              />
+            </div>
+            <div *ngIf="isFieldInvalid('lastname')" class="invalid-feedback d-block">
+              {{ getErrorMessage("lastname") }}
+            </div>
+        </div>
+
+          <div class="form-group has-danger">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fa fa-user"></i>
+                </span>
+              </div>
+              <input
+                formControlName="email"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': isFieldInvalid('email') }"
+                placeholder="Email"
+                type="text"
+              />
+            </div>
+            <div *ngIf="isFieldInvalid('email')" class="invalid-feedback d-block">
+                {{ getErrorMessage("email") }}
+            </div>
+          </div>
+
+          <div class="form-group has-danger">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fa fa-lock"></i>
+                </span>
+              </div>
+              <input
+                formControlName="password"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': isFieldInvalid('password') }"
+                placeholder="******"
+                type="password"
+              />
+            </div>
+            <div *ngIf="isFieldInvalid('password')" class="invalid-feedback d-block">
+            {{ getErrorMessage("password") }}
+            </div>
+          </div>
+
+          <div class="form-group has-danger">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fa fa-lock"></i>
+                </span>
+              </div>
+              <input
+                formControlName="verifyPassword"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': isFieldInvalid('verifyPassword') }"
+                placeholder="******"
+                type="password"
+              />
+            </div>
+            <div *ngIf="isFieldInvalid('verifyPassword')" class="invalid-feedback d-block">
+                {{ getErrorMessage("verifyPassword") }}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">
+              Register
+            </button>
+          </div>
+
+        </form>
+      </article>
+    </div>
+  </div>
+</div>

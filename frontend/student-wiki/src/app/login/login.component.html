@@ -6,6 +6,7 @@
         <hr />
         <p class="text-success text-center">Please login to your account!</p>
         <form [formGroup]="form" (ngSubmit)="onSubmit()"> 
+          
           <div class="form-group has-danger">
             <div class="input-group">
               <div class="input-group-prepend">
@@ -14,19 +15,18 @@
                 </span>
               </div>
               <input
-                formControlName="login"
+                formControlName="email"
                 class="form-control"
-                [ngClass]="{'is-invalid': isFieldInvalid('login')}"
-                placeholder="Email or login"
+                [ngClass]="{'is-invalid': isFieldInvalid('email')}"
+                placeholder="Email"
                 type="text"
               />
-              <div *ngIf="isFieldInvalid('login')" class="invalid-feedback">
-                  {{getErrorMessage('login')}}
-              </div>
             </div>
-            <!-- input-group.// -->
+            <div *ngIf="isFieldInvalid('email')" class="invalid-feedback d-block">
+                {{getErrorMessage('email')}}
+            </div>
           </div>
-          <!-- form-group// -->
+
           <div class="form-group has-danger">
             <div class="input-group">
               <div class="input-group-prepend">
@@ -41,18 +41,18 @@
                 placeholder="******"
                 type="password"
               />
-              <div *ngIf="isFieldInvalid('password')" class="invalid-feedback">
-                  {{getErrorMessage('password')}}
-              </div>
             </div>
-            <!-- input-group.// -->
+            <div *ngIf="isFieldInvalid('password')" class="invalid-feedback d-block">
+                {{getErrorMessage('password')}}
+            </div>
           </div>
-          <!-- form-group// -->
+
           <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block">
               Login
             </button>
           </div>
+
           <p class="text-center">
             <a [routerLink]="['/register']" routerLinkActive="router-link-active"  class="btn register-button">Want to register?</a>
           </p>

@@ -9,10 +9,14 @@ import { User, LoginUser, RegisterUser } from '../models/user';
 export class AuthService {
 
   private loggedIn = new BehaviorSubject<boolean>(false); // {1}
-  private currentUser: User;
+  private currentUser = new BehaviorSubject<User>(null);
 
   get isLoggedIn() {
     return this.loggedIn.asObservable(); // {2}
+  }
+
+  get user() {
+    return this.currentUser.asObservable();;
   }
 
   constructor(
@@ -20,7 +24,7 @@ export class AuthService {
   ) {}
 
   login(user: LoginUser){
-    if (user.login !== '' && user.password !== '' ) { // {3}
+    if (user.email !== '' && user.password !== '' ) { // {3}
       this.loggedIn.next(true);
       this.router.navigate(['/']);
     }
@@ -28,7 +32,7 @@ export class AuthService {
 
   register(user: RegisterUser) {
     // temporary id
-    this.currentUser = {id: "xxx", ...user};
+    this.currentUser.next({id: "xxx", ...user});
     this.login(user);
   }
 
