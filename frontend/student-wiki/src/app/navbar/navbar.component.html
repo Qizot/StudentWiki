@@ -1,0 +1,31 @@
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="#">StudentWiki</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-toggler-icon">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar-toggler-icon">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a [routerLink]="home" class="nav-link">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a [routerLink]="teachers" class="nav-link" href="#">Teachers</a>
+        </li>
+        <li class="nav-item">
+          <a [routerLink]="courses" class="nav-link" href="#">Courses</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto nav-flex-icons">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbar-user" data-toggle="dropdown">
+            <i class="fas fa-user"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right dropdown-default">
+            <a class="dropdown-item" (click)="logout()">Logut</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
