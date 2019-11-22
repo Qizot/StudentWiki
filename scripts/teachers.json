@@ -1,0 +1,112 @@
+[
+    {
+        "id": "ef2eace3-035c-48d0-9f9e-c134bdd015f4",
+        "name": "Jennifer Hernandez",
+        "degree": "Nobody",
+        "image": "https://dailyutahchronicle.com/wp-content/uploads/2017/10/professorrating-900x598.jpg",
+        "teacherCard": {
+            "phone": "875460370",
+            "email": "Jennifer_Hernandez@gmail.com",
+            "homePage": "https://JenniferHernandez.com"
+        }
+    },
+    {
+        "id": "ad94c8c6-1bc9-4630-bfad-a0cb08bf2474",
+        "name": "Jonathan Kim",
+        "degree": "Professor",
+        "image": "https://dailyutahchronicle.com/wp-content/uploads/2017/10/professorrating-900x598.jpg",
+        "teacherCard": {
+            "phone": "809371913",
+            "email": "Jonathan_Kim@gmail.com",
+            "homePage": "https://JonathanKim.com"
+        }
+    },
+    {
+        "id": "d131a2f5-2501-4fcd-88e8-ba25bf23f6c0",
+        "name": "Phillip Carrillo",
+        "degree": "Professor",
+        "image": "https://dailyutahchronicle.com/wp-content/uploads/2017/10/professorrating-900x598.jpg",
+        "teacherCard": {
+            "phone": "496167074",
+            "email": "Phillip_Carrillo@gmail.com",
+            "homePage": "https://PhillipCarrillo.com"
+        }
+    },
+    {
+        "id": "8e00bb29-ed92-4c92-a674-9b9aa8a19ad6",
+        "name": "Levi Robinson",
+        "degree": "Master",
+        "image": "https://dailyutahchronicle.com/wp-content/uploads/2017/10/professorrating-900x598.jpg",
+        "teacherCard": {
+            "phone": "288177524",
+            "email": "Levi_Robinson@gmail.com",
+            "homePage": "https://LeviRobinson.com"
+        }
+    },
+    {
+        "id": "bbda628d-2404-4263-9135-c5f25031db68",
+        "name": "Tony Garza",
+        "degree": "Nobody",
+        "image": "https://dailyutahchronicle.com/wp-content/uploads/2017/10/professorrating-900x598.jpg",
+        "teacherCard": {
+            "phone": "248447088",
+            "email": "Tony_Garza@gmail.com",
+            "homePage": "https://TonyGarza.com"
+        }
+    },
+    {
+        "id": "fa182f9f-a2cd-4f73-80fd-2276187efd96",
+        "name": "Richard Johnson",
+        "degree": "Professor",
+        "image": "https://dailyutahchronicle.com/wp-content/uploads/2017/10/professorrating-900x598.jpg",
+        "teacherCard": {
+            "phone": "914967728",
+            "email": "Richard_Johnson@gmail.com",
+            "homePage": "https://RichardJohnson.com"
+        }
+    },
+    {
+        "id": "d4294901-b7f8-41cd-adf4-4698d5e031ca",
+        "name": "Sandra Baker",
+        "degree": "Master",
+        "image": "https://dailyutahchronicle.com/wp-content/uploads/2017/10/professorrating-900x598.jpg",
+        "teacherCard": {
+            "phone": "992439653",
+            "email": "Sandra_Baker@gmail.com",
+            "homePage": "https://SandraBaker.com"
+        }
+    },
+    {
+        "id": "253d63a5-6dcf-48e6-a004-bd58e419374b",
+        "name": "Jacob Mills",
+        "degree": "Master",
+        "image": "https://dailyutahchronicle.com/wp-content/uploads/2017/10/professorrating-900x598.jpg",
+        "teacherCard": {
+            "phone": "460763687",
+            "email": "Jacob_Mills@gmail.com",
+            "homePage": "https://JacobMills.com"
+        }
+    },
+    {
+        "id": "1d79e24f-2ac6-4066-9ff9-a6497ff480b0",
+        "name": "Patricia Schmidt",
+        "degree": "Nobody",
+        "image": "https://dailyutahchronicle.com/wp-content/uploads/2017/10/professorrating-900x598.jpg",
+        "teacherCard": {
+            "phone": "393843492",
+            "email": "Patricia_Schmidt@gmail.com",
+            "homePage": "https://PatriciaSchmidt.com"
+        }
+    },
+    {
+        "id": "d39166ae-dbb8-4bcf-bac1-d28fc37b27c4",
+        "name": "Lisa Combs",
+        "degree": "Professor",
+        "image": "https://dailyutahchronicle.com/wp-content/uploads/2017/10/professorrating-900x598.jpg",
+        "teacherCard": {
+            "phone": "278476511",
+            "email": "Lisa_Combs@gmail.com",
+            "homePage": "https://LisaCombs.com"
+        }
+    }
+]

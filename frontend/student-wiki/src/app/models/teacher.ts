@@ -1,4 +1,3 @@
-import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { RatingValue } from './rating';
 
 export interface CourseTeacher {
