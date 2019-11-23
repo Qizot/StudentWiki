@@ -12,6 +12,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HomeLayoutComponent } from './layouts/home-layout.component';
 import { LoginLayoutComponent } from './layouts/login-layout.component';
 import { RegisterComponent } from './register/register.component';
+import { CourseListComponent } from './course-list/course-list.component';
+import { CourseComponent } from './course/course.component';
 
 @NgModule({
    declarations: [
@@ -21,7 +23,9 @@ import { RegisterComponent } from './register/register.component';
       HomeComponent,
       HomeLayoutComponent,
       LoginLayoutComponent,
-      RegisterComponent
+      RegisterComponent,
+      CourseListComponent,
+      CourseComponent
    ],
    imports: [
       BrowserModule,

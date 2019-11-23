@@ -6,6 +6,8 @@ import { LoginComponent } from './login/login.component';
 import { HomeLayoutComponent } from './layouts/home-layout.component';
 import { LoginLayoutComponent } from './layouts/login-layout.component';
 import { RegisterComponent } from './register/register.component';
+import { CourseComponent } from './course/course.component';
+import { CourseListComponent } from './course-list/course-list.component';
 
 
 const routes: Routes = [
@@ -15,9 +17,17 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: '',
+        path: 'home',
         component: HomeComponent
-      }
+      },
+      {
+        path: 'courses',
+        component: CourseListComponent,
+      },
+      {
+        path: 'courses/:id',
+        component: CourseComponent,
+      },
     ]
   },
   {
@@ -34,6 +44,7 @@ const routes: Routes = [
       }
     ]
   },
+
   { path: '**', redirectTo: '' }
 ];
 
