@@ -13,6 +13,7 @@ import { HomeLayoutComponent } from './layouts/home-layout.component';
 import { LoginLayoutComponent } from './layouts/login-layout.component';
 import { RegisterComponent } from './register/register.component';
 import { CourseListComponent } from './course-list/course-list.component';
+import { CourseCardComponent } from './course-card/course-card.component';
 import { CourseComponent } from './course/course.component';
 
 @NgModule({
@@ -25,6 +26,7 @@ import { CourseComponent } from './course/course.component';
       LoginLayoutComponent,
       RegisterComponent,
       CourseListComponent,
+      CourseCardComponent,
       CourseComponent
    ],
    imports: [

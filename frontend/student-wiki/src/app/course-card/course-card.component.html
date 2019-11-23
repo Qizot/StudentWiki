@@ -1,0 +1,19 @@
+<div class="card zebra-card">
+  <img class="card-img-top" [src]="course.image" />
+  <div class="card-body">
+    <h3 class="card-title">{{ course.name }}</h3>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><b>Semester: </b> {{ course.semester }}</li>
+      <li class="list-group-item"><b>ECTS:</b> {{ course.ects }}</li>
+      <li class="list-group-item"><b>Form:</b> {{ course.courseForm }}</li>
+      <li class="list-group-item">
+        <b>Rating:</b> {{ currentRating | number: "1.2-2" }}
+      </li>
+    </ul>
+  </div>
+  <div class="card-footer text-center">
+    <a [routerLink]="['/courses', course.id]" class="btn btn-dark"
+      >Check course</a
+    >
+  </div>
+</div>

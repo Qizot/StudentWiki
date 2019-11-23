@@ -6,8 +6,8 @@ import { LoginComponent } from './login/login.component';
 import { HomeLayoutComponent } from './layouts/home-layout.component';
 import { LoginLayoutComponent } from './layouts/login-layout.component';
 import { RegisterComponent } from './register/register.component';
-import { CourseComponent } from './course/course.component';
 import { CourseListComponent } from './course-list/course-list.component';
+import { CourseComponent } from './course/course.component';
 
 
 const routes: Routes = [

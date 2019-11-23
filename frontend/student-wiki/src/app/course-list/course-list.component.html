@@ -1,7 +1,5 @@
 <div class="container">
   <div class="row justify-content-center align-items-center">
-      <div class=" col-sm-4 col-md-3 m-2 pt-2" *ngFor="let course of courses"> 
-        <app-course [course]="course" [displayCard]="true"></app-course>
-      </div>
+      <app-course-card class=" col-sm-4 col-md-3 m-2 pt-2 zebra-card" *ngFor="let course of courses" [course]="course"></app-course-card>
   </div>
 </div>
