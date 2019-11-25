@@ -1,5 +1,6 @@
 
 .zebra-card {
+    min-width: 260px;
     &:nth-child(even) {
         background: rgb(78, 74, 74);
     }

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Course } from '../models/course';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { CourseService } from '../course.service';
+import { starRating } from '../helpers/start-rating';
 
 @Component({
   selector: 'app-course-card',
@@ -22,6 +23,12 @@ export class CourseCardComponent implements OnInit {
     let sum = 0;
     this.course.ratings.forEach(rating => sum += rating.rating);
     return sum / n;
+  }
+
+  getStarsString() {
+    if (!this.commentsCount) return "";
+    console.log(this.currentRating);
+    return starRating(this.currentRating);
   }
 
   getCommentCount() {
