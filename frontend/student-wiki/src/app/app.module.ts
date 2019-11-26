@@ -15,6 +15,7 @@ import { RegisterComponent } from './register/register.component';
 import { CourseListComponent } from './course-list/course-list.component';
 import { CourseCardComponent } from './course-card/course-card.component';
 import { CourseComponent } from './course/course.component';
+import { CourseTeacherCardComponent } from './course-teacher-card/course-teacher-card.component';
 
 @NgModule({
    declarations: [
@@ -27,7 +28,8 @@ import { CourseComponent } from './course/course.component';
       RegisterComponent,
       CourseListComponent,
       CourseCardComponent,
-      CourseComponent
+      CourseComponent,
+      CourseTeacherCardComponent
    ],
    imports: [
       BrowserModule,

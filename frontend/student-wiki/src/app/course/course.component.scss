@@ -6,4 +6,16 @@
         height: auto;
         border-radius: 20px;
     }
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+.teacher-select {
+    font-weight: 600;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.card-body {
+    padding: 0.6rem;
 }

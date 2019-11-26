@@ -1,10 +1,15 @@
 
+body {
+    background: blue;
+}
+
 .zebra-card {
-    min-width: 260px;
+    min-width: 280px;
+    border-radius: 20px;
     &:nth-child(even) {
-        background: rgb(78, 74, 74);
+        background: #1d292f;
     }
     &:nth-child(odd) {
-        background: rgb(22, 22, 22);
+        background: #0c0a0a;
     }
 }

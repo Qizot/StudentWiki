@@ -27,7 +27,6 @@ export class CourseCardComponent implements OnInit {
 
   getStarsString() {
     if (!this.commentsCount) return "";
-    console.log(this.currentRating);
     return starRating(this.currentRating);
   }
 
