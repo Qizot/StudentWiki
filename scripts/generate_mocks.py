@@ -41,13 +41,13 @@ def random_comment():
         "studentId": studentId 
     }
 
-def random_comment_category():
+def random_comment_category(category):
     comment_count = randint(1,5)
 
-    category = 'nothing'
+    categories = ["Knowledge", "Passion", "Charisma"]
     comments = [random_comment() for _ in range(comment_count)]
 
-    return {"category": category, "comments": comments}
+    return {"category": categories[category], "comments": comments}
 
 def random_teacher_card(name):
     phone = str(randint(100000000, 999999999))
@@ -77,9 +77,8 @@ def random_teacher():
 
 def random_course_teacher():
     teacher = random.choice(teachers)
-    categories = randint(1, 3)
 
-    commentCategories = [random_comment_category() for _ in range(categories)]
+    commentCategories = [random_comment_category(i) for i in range(3)]
 
     return {"teacher": teacher, "commentCategories": commentCategories}
 
@@ -103,6 +102,12 @@ def random_course():
         'UX',
         'CSS',
         'JS',
+        "SysOpy",
+        "DevOps",
+        "Infra",
+        "WDAI 2",
+        "WDI+",
+        "ASD"
     ])
     image = "https://www.informatyka.agh.edu.pl/static/img/cooperation_tile.jpg"
     description = fake.text()[:200]
