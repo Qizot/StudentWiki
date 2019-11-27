@@ -12,9 +12,7 @@ import { starRating } from '../helpers/start-rating';
 export class CourseCardComponent implements OnInit {
 
   @Input() course: Course;
-
   currentRating: number;
-  commentsCount: number;
 
   constructor() { }
 
@@ -26,21 +24,12 @@ export class CourseCardComponent implements OnInit {
   }
 
   getStarsString() {
-    if (!this.commentsCount) return "";
+    if (!this.currentRating) return "";
     return starRating(this.currentRating);
-  }
-
-  getCommentCount() {
-    return this.course.courseTeachers
-      .reduce(
-        (acc, ct) => acc + ct.commentCategories.reduce((acc, c) => acc + c.comments.length, 0), 
-      0);
   }
 
   ngOnInit() {
     this.currentRating = this.getCurrentRating();
-    this.commentsCount = this.getCommentCount();
-
   }
 
 }

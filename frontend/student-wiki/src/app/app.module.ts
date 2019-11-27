@@ -15,7 +15,8 @@ import { RegisterComponent } from './register/register.component';
 import { CourseListComponent } from './course-list/course-list.component';
 import { CourseCardComponent } from './course-card/course-card.component';
 import { CourseComponent } from './course/course.component';
-import { CourseTeacherCardComponent } from './course-teacher-card/course-teacher-card.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { RateCourseComponent } from './rate-course/rate-course.component';
 
 @NgModule({
    declarations: [
@@ -29,12 +30,13 @@ import { CourseTeacherCardComponent } from './course-teacher-card/course-teacher
       CourseListComponent,
       CourseCardComponent,
       CourseComponent,
-      CourseTeacherCardComponent
+      RateCourseComponent,
    ],
    imports: [
       BrowserModule,
       AppRoutingModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      NgbModule
    ],
    providers: [
       AuthService,

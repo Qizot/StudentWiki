@@ -1,4 +1,3 @@
-import { CourseTeacher } from './teacher';
 import { RatingValue } from './rating';
 
 export enum CourseForm {
@@ -13,7 +12,6 @@ export interface Course {
     name: string;
     image: string;
     description: string;
-    courseTeachers: CourseTeacher[];
     ects: number;
     semester: number;
     courseForm: CourseForm;

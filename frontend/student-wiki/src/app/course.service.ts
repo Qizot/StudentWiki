@@ -18,6 +18,7 @@ export class CourseService {
   }
 
   getCourseById(id: string) {
+    console.log(this.courses.find(course => course.id === id));
     return of(this.courses.find(course => course.id === id));
   }
 

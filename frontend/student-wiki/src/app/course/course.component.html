@@ -1,63 +1,22 @@
 <div class="container">
 
-  <div class="row">
-
-    <div class="col-lg-4">
-      <h1 class="my-4" style="color: white">Teachers</h1>
-      <div class="list-group">
-        <a 
-          class="list-group-item teacher-select" 
-          [ngClass]="{
-            active: currentTeacher.teacher.id === courseTeacher.teacher.id 
-          }" 
-          (click)="setCurrentTeacher(courseTeacher.teacher.id)"
-          *ngFor="let courseTeacher of courseTeachers"
-        >
-          {{courseTeacher.teacher.name}}
-        </a>
-      </div>
-
-      <app-course-teacher-card [courseTeacher]="currentTeacher"></app-course-teacher-card>
-    </div>
-
-
+  <div class="row justify-content-center">
     <!-- /.col-lg-3 -->
 
     <section class="col-lg-8">
       <h1 class="my-4" style="color: white">Course:</h1>
-      <article class="card mt-4">
-        <img class="card-img-top img-fluid" [src]="course.image" alt="">
+      <article class="card mt-4 pb-2">
+        <img class="card-img-top img-fluid" [src]="course.image">
         <div class="card-body">
-          <h3 class="card-title">Course: {{course.name}}</h3>
+          <h3 class="card-title">{{course.name}}</h3>
           <h5 class="card-title">Description: </h5>
           <p class="card-text">{{course.description}}</p>
           <h5 class="card-title">Course rating: </h5>
           <span class="text-warning">{{getStars()}} {{currentRating | number: "1.2-2"}}</span>
         </div>
       </article>
-      <!-- /.card -->
-
-      <div class="card card-outline-secondary my-4">
-        <div class="card-header">
-          Product Reviews
-        </div>
-        <div class="card-body">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-          <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-          <hr>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-          <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-          <hr>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-          <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-          <hr>
-          <a href="#" class="btn btn-success">Leave a Review</a>
-        </div>
-      </div>
-      <!-- /.card -->
-
+      <app-rate-course></app-rate-course>
     </section>
-    <!-- /.col-lg-9 -->
 
   </div>
 
