@@ -25,7 +25,7 @@ export interface CourseRating {
     studentId: string;
 }
 
-export interface AddCurse {
+export interface AddCourse {
     name: string;
     description: string;
     image: string;
@@ -33,5 +33,4 @@ export interface AddCurse {
     ects: number;
     courseForm: CourseForm;
     maxStudents: number;
-
 }

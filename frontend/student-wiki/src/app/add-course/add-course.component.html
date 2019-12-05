@@ -1,14 +1,15 @@
 <section class="container">
 
   <div class="row justify-content-center">
-    <div class="card">
+    <div class="card col-12 col-md-8 my-sm-3">
       <article class="card-body">
         <h4 class="card-title text-center mb-4 mt-1">Add new course</h4>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <div class="form-group has-danger">
+            <label for="courseName">Course Name</label>
             <div class="input-group">
               <input formControlName="courseName" class="form-control"
-                [ngClass]="{ 'is-invalid': isFieldInvalid('courseName') }" placeholder="Course Name" type="text" />
+                [ngClass]="{ 'is-invalid': isFieldInvalid('courseName') }" placeholder="Type in course name" type="text" />
             </div>
             <div *ngIf="isFieldInvalid('courseName')" class="invalid-feedback d-clock">
               {{ getErrorMessage("courseName") }}
@@ -16,9 +17,11 @@
           </div>
 
           <div class="form-group has-danger">
+            <label for="description">Description</label>
             <div class="input-group">
               <textarea formControlName="description" class="form-control"
-                [ngClass]="{ 'is-invalid': isFieldInvalid('description') }" placeholder="description" type="text">
+                [ngClass]="{ 'is-invalid': isFieldInvalid('description') }" placeholder="Type in course description" 
+                type="text" rows="8">
                 </textarea>
             </div>
             <div *ngIf="isFieldInvalid('description')" class="invalid-feedback d-clock">
@@ -28,7 +31,7 @@
 
           <div class="form-group has-danger">
             <label for="semester">Semester</label>
-            <select formControlName="semester" id="semseter">
+            <select class="form-control" formControlName="semester" id="semseter">
               <option *ngFor="let semester of [1,2,3,4,5,6,7,8,9]" [value]="semester">
                 {{semester}}
               </option>
@@ -39,6 +42,7 @@
           </div>
 
           <div class="form-group has-danger">
+            <label for="ects">ECTS</label>
             <input formControlName="ects" class="form-control" [ngClass]="{ 'is-invalid': isFieldInvalid('ects') }"
               placeholder="ECTS" type="number" />
             <div *ngIf="isFieldInvalid('ects')" class="invalid-feedback d-block">
@@ -48,26 +52,28 @@
 
           <div class="form-group has-danger">
             <label for="courseForm">Course Form</label>
-            <select formControlName="courseForm" id="courseForm">
-              <option *ngFor="let semester of [1,2,3,4,5,6,7,8,9]" [value]="semester">
-                {{semester}}
+            <select class="form-control" formControlName="courseForm" id="courseForm">
+              <option *ngFor="let cf of getCourseFormKeys()" [value]="cf">
+                {{courseForms[cf]}}
               </option>
             </select>
-            <div *ngIf="isFieldInvalid('lastname')" class="invalid-feedback d-block">
-              {{ getErrorMessage("semester") }}
+            <div *ngIf="isFieldInvalid('courseForm')" class="invalid-feedback d-block">
+              {{ getErrorMessage("courseForm") }}
             </div>
           </div>
 
           <div class="form-group has-danger">
-            <input formControlName="maxSutdents" class="form-control"
-              [ngClass]="{ 'is-invalid': isFieldInvalid('maxSutdents') }" placeholder="Maximum number of studnets"
+            <label for="maxStudents">Maximum Students</label>
+            <input formControlName="maxStudents" class="form-control"
+              [ngClass]="{ 'is-invalid': isFieldInvalid('maxStudents') }" placeholder="Enter students number"
               type="number" />
             <div *ngIf="isFieldInvalid('maxStudents')" class="invalid-feedback d-block">
-              {{ getErrorMessage("ects") }}
+              {{ getErrorMessage("maxStudents") }}
             </div>
           </div>
 
           <div class="form-group has-danger">
+            <label for="image">Course Image</label>
             <input formControlName="image" class="form-control" [ngClass]="{ 'is-invalid': isFieldInvalid('image') }"
               placeholder="URL to course image" type="text" />
             <div *ngIf="isFieldInvalid('image')" class="invalid-feedback d-block">

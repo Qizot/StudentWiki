@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CourseService } from '../course.service';
 import { Course } from '../models/course';
-import { starRating } from '../helpers/start-rating';
+import { starRating, getCourseRating } from '../helpers/helpers';
 
 @Component({
   selector: 'app-course',
@@ -29,10 +29,7 @@ export class CourseComponent implements OnInit {
   }
 
   getCurrentRating() {
-    let n = this.course.ratings.length;
-    let sum = 0;
-    this.course.ratings.forEach(rating => sum += rating.rating);
-    return sum / n;
+    return getCourseRating(this.course);
   }
 
   getStars() {

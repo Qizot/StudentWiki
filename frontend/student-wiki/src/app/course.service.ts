@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as Courses from "../mocks/courses.json";
-import { Course } from './models/course';
+import { Course, AddCourse } from './models/course';
 import { of } from 'rxjs';
 import { User } from './models/user.js';
 import { RatingValue } from './models/rating.js';
@@ -26,8 +26,9 @@ export class CourseService {
     return of(this.courses.find(course => course.id === id));
   }
 
-  addCourse(course: Course) {
-    this.courses.push(course);
+  addCourse(course: AddCourse) {
+    const properCourse: Course = {...course, id: course.name, ratings: [], enrolledStudents: []};
+    this.courses.push(properCourse);
   }
 
   deleteCourse(id: string) {

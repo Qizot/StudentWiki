@@ -20,6 +20,7 @@ import { RateCourseComponent } from './rate-course/rate-course.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AddCourseComponent } from './add-course/add-course.component';
+import { SearchCoursesPipe } from './pipes/search-courses.pipe';
 
 @NgModule({
    declarations: [
@@ -35,6 +36,7 @@ import { AddCourseComponent } from './add-course/add-course.component';
       CourseComponent,
       RateCourseComponent,
       AddCourseComponent,
+      SearchCoursesPipe,
    ],
    imports: [
       BrowserModule,

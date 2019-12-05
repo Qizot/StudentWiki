@@ -1,5 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators
+} from '@angular/forms';
+import {CourseForm, AddCourse} from '../models/course';
+import { formatNumber } from '@angular/common';
+import { CourseService } from '../course.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-course',
@@ -9,13 +20,21 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AddCourseComponent implements OnInit {
 
   form: FormGroup;
-  formSubmitAttempt: boolean = false;
+  formSubmitAttempted: boolean = false;
+
+  courseForms = CourseForm;
+
+  getCourseFormKeys() {
+    return Object.keys(this.courseForms).filter(k => !isNaN(parseInt(k)));
+  }
+
 
 
   constructor(
-    private fb: FormBuilder
-    ) {
-  }
+    private fb: FormBuilder,
+    private courseService: CourseService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -24,45 +43,44 @@ export class AddCourseComponent implements OnInit {
       semester: ['', [Validators.required, Validators.min(1), Validators.max(9)]],
       ects: ['', [Validators.required, Validators.min(1), Validators.max(100)]],
       courseForm: ['', Validators.required],
-      maxSutdents: ['', [Validators.required, Validators.min(1), Validators.max(1000)]],
+      maxStudents: ['', [Validators.required, Validators.min(1), Validators.max(1000)]],
       image: ['', [Validators.required, Validators.pattern(/https?:[/|.|\w|\s|-]*\.(?:jpg|gif|png).*/g)]]
     });
   }
 
-  isFieldInvalid(field: string) {
-  const isValid = (
-    (!this.form.get(field).valid && this.form.get(field).touched) ||
-    (this.form.get(field).untouched && this.formSubmitAttempt)
-  );
-  return isValid;
-}
+  isFieldInvalid(fieldName: string) {
+    const field = this.form.get(fieldName);
+    if (!field) {
+      return this.formSubmitAttempted;
+    }
 
-getErrorMessage(field: string) {
-  const messages = {
-    courseName: "Please eneter course name",
-    description: "Please enter description",
-    semester: "Please choose semster",
-    ects: "Please enter correct number of ECTS points",
-    courseForm: "Please choose course form",
-    maxSutdents: "Please specify maximum number of students allowed"
+    return (!field.valid && field.touched) ||
+      (field.untouched && this.formSubmitAttempted);
   }
 
-  return messages[field];
-}
+  getErrorMessage(field: string) {
+    const messages = {
+      courseName: "Please eneter course name",
+      description: "Please enter description",
+      semester: "Please choose semster",
+      ects: "Please enter correct number of ECTS points",
+      courseForm: "Please choose course form",
+      maxStudents: "Please specify maximum number of students allowed"
+    }
 
-submitAttempted() {
-  return this.formSubmitAttempt;
-}
+    return messages[field];
+  }
 
-onSubmit() {
-  if (this.form.valid) {
-    if (this.form.controls.password.value !== this.form.controls.verifyPassword.value) {
-      this.form.controls.verifyPassword.setErrors({'incorrect': true});
-    } else {
-      this.authService.register(this.form.value);
+  submitAttempted() {
+    return this.formSubmitAttempted;
+  }
+
+  onSubmit() {
+    this.formSubmitAttempted = true;
+    if (this.form.valid) {
+      this.courseService.addCourse({...this.form.value, name: this.form.value.courseName});
+      this.router.navigate(["/courses"]);
     }
   }
-  this.formSubmitAttempt = true;
-}
 
 }

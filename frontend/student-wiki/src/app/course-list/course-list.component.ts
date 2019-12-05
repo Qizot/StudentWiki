@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseService } from '../course.service';
 import { Course } from '../models/course';
+import { CourseSearchConfig } from '../pipes/search-courses.pipe';
 
 @Component({
   selector: 'app-course-list',
@@ -10,6 +11,7 @@ import { Course } from '../models/course';
 export class CourseListComponent implements OnInit {
 
   courses: Course[]
+  searchConfig: Partial<CourseSearchConfig> = {};
 
   constructor(private courseService: CourseService) { }
 

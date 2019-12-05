@@ -8,6 +8,7 @@ import { LoginLayoutComponent } from './layouts/login-layout.component';
 import { RegisterComponent } from './register/register.component';
 import { CourseListComponent } from './course-list/course-list.component';
 import { CourseComponent } from './course/course.component';
+import { AddCourseComponent } from './add-course/add-course.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,10 @@ const routes: Routes = [
       {
         path: 'courses',
         component: CourseListComponent,
+      },
+      {
+        path: 'courses/add',
+        component: AddCourseComponent,
       },
       {
         path: 'courses/:id',
