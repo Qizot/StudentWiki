@@ -1,3 +1,6 @@
 --- add course
 -- enroll on a course
 -- delete course
+
+
+*** when width goes under 960px (lg bootstrap) then hide filter and make it openable from side with animation like with culinary shock

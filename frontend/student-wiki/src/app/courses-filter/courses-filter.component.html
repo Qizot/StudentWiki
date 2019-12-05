@@ -1,0 +1,57 @@
+<aside class="filter">
+
+  <div class="card">
+    <article class="card-body">
+      <h4 class="card-title text-center mb-4 mt-1">Filter courses</h4>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="name">Course Name</label>
+          <div class="input-group">
+            <input class="form-control" formControlName="name" placeholder="filter by name"
+              type="text" />
+          </div>
+        </div>
+
+        <div class="form-group custom-slider">
+          <label>Semester</label>
+          <ng5-slider formControlName="semester" [options]="semesterOptions"></ng5-slider>
+        </div>
+
+        <div class="form-group custom-slider">
+          <label>Maximum students</label>
+          <ng5-slider formControlName="maxStudents" [options]="maxStudentsOptions">
+          </ng5-slider>
+        </div>
+
+        <div class="form-group custom-slider">
+          <label>Rating</label>
+          <ng5-slider formControlName="rating" [options]="ratingOptions"></ng5-slider>
+        </div>
+
+        <div class="form-group custom-slider">
+          <label>ECTS</label>
+          <ng5-slider formControlName="ects" [options]="ectsOptions"></ng5-slider>
+        </div>
+
+        <div class="form-group">
+            <label for="courseForm">Course Form</label>
+            <select class="form-control" formControlName="courseForm" id="courseForm">
+                <option *ngFor="let cf of getCourseFormKeys()" [value]="courseForms[cf]">
+                {{courseForms[cf]}}
+                </option>
+            </select>
+        </div>
+
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block">
+            Filter
+          </button>
+        </div>
+      </form>
+    </article>
+
+  </div>
+
+
+</aside>

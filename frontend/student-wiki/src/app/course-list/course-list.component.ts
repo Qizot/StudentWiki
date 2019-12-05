@@ -1,7 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { CourseService } from '../course.service';
-import { Course } from '../models/course';
-import { CourseSearchConfig } from '../pipes/search-courses.pipe';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  CourseService
+} from '../course.service';
+import {
+  Course
+} from '../models/course';
+import {
+  CourseSearchConfig
+} from '../pipes/search-courses.pipe';
 
 @Component({
   selector: 'app-course-list',
@@ -11,14 +20,19 @@ import { CourseSearchConfig } from '../pipes/search-courses.pipe';
 export class CourseListComponent implements OnInit {
 
   courses: Course[]
-  searchConfig: Partial<CourseSearchConfig> = {};
+  searchConfig: Partial < CourseSearchConfig > = {};
 
-  constructor(private courseService: CourseService) { }
+  constructor(private courseService: CourseService) {}
 
   ngOnInit() {
     this.getCourses();
   }
 
+
+  setSearchConfig(config: CourseSearchConfig) {
+    console.log(config);
+    this.searchConfig = config;
+  }
   getCourses() {
     this.courseService.getAllCourses().subscribe(cs => {
       this.courses = cs;

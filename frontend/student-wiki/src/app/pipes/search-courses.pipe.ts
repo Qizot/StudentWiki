@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { CourseForm, Course } from '../models/course';
 import { getCourseRating } from '../helpers/helpers';
 
-interface Range {
+export interface Range {
   min: number;
   max: number;
 }
@@ -14,7 +14,6 @@ export interface CourseSearchConfig {
   rating: Range;
   ects: Range;
   courseForm: CourseForm;
-
 }
 
 @Pipe({
@@ -25,7 +24,6 @@ export class SearchCoursesPipe implements PipeTransform {
   
 
   transform(courses: Course[], config: Partial<CourseSearchConfig>): Course[] {
-    console.log("running pipe");
     const isBetween = (num: number, range: Range) => 
       range.min <= num && num <= range.max;
 
@@ -41,13 +39,12 @@ export class SearchCoursesPipe implements PipeTransform {
     if (config.rating) {
       courses = courses.filter(course => isBetween(getCourseRating(course), config.rating));
     }
-    if (config.semester) {
-      courses = courses.filter(course => isBetween(course.semester, config.semester));
+    if (config.ects) {
+      courses = courses.filter(course => isBetween(course.ects, config.ects));
     }
     if (config.courseForm) {
       courses = courses.filter(course => course.courseForm === config.courseForm);
     }
-    console.log(courses);
     return courses;
   }
 

@@ -4,6 +4,10 @@
 // @import "variables";
 // @import "global";
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     background-color: #0e131b;
 }

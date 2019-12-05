@@ -21,6 +21,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { SearchCoursesPipe } from './pipes/search-courses.pipe';
+import { CoursesFilterComponent } from './courses-filter/courses-filter.component';
+import { Ng5SliderModule } from 'ng5-slider';
 
 @NgModule({
    declarations: [
@@ -37,6 +39,7 @@ import { SearchCoursesPipe } from './pipes/search-courses.pipe';
       RateCourseComponent,
       AddCourseComponent,
       SearchCoursesPipe,
+      CoursesFilterComponent,
    ],
    imports: [
       BrowserModule,
@@ -44,7 +47,8 @@ import { SearchCoursesPipe } from './pipes/search-courses.pipe';
       ReactiveFormsModule,
       NgbModule,
       BrowserAnimationsModule,
-      MatSnackBarModule
+      MatSnackBarModule,
+      Ng5SliderModule
    ],
    providers: [
       AuthService,
