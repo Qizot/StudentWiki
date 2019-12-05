@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import * as Courses from "../mocks/courses.json";
 import { Course } from './models/course';
 import { of } from 'rxjs';
+import { User } from './models/user.js';
+import { RatingValue } from './models/rating.js';
+import {MatSnackBar} from '@angular/material/snack-bar';
+
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +32,17 @@ export class CourseService {
 
   deleteCourse(id: string) {
     this.courses = this.courses.filter(course => course.id !== id);
+  }
+
+  rateCourse(courseId: string, user: User, rating: RatingValue) {
+    const course = this.courses.find(course => course.id === courseId);
+    if (!course) {
+      return {success: false, message: "Course has not been found"};
+    }
+    if (!user) {
+      return {success: false, message: "User is not logged in"};
+    }
+    course.ratings.push({studentId: user.id, rating});
+    return {success: true, message: "Rating addeds successfully"};
   }
 }

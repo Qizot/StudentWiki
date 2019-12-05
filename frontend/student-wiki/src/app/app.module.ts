@@ -17,6 +17,9 @@ import { CourseCardComponent } from './course-card/course-card.component';
 import { CourseComponent } from './course/course.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { RateCourseComponent } from './rate-course/rate-course.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AddCourseComponent } from './add-course/add-course.component';
 
 @NgModule({
    declarations: [
@@ -31,12 +34,15 @@ import { RateCourseComponent } from './rate-course/rate-course.component';
       CourseCardComponent,
       CourseComponent,
       RateCourseComponent,
+      AddCourseComponent,
    ],
    imports: [
       BrowserModule,
       AppRoutingModule,
       ReactiveFormsModule,
-      NgbModule
+      NgbModule,
+      BrowserAnimationsModule,
+      MatSnackBarModule
    ],
    providers: [
       AuthService,

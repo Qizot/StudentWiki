@@ -1,3 +1,10 @@
 .navbar-dark {
     background-color: rgb(32, 29, 29);
 }
+
+.dropdown-item {
+    &:hover {
+        background: #dedece
+    }
+    cursor: pointer;
+}

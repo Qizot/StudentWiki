@@ -24,3 +24,14 @@ export interface CourseRating {
     rating: RatingValue;
     studentId: string;
 }
+
+export interface AddCurse {
+    name: string;
+    description: string;
+    image: string;
+    semester: number;
+    ects: number;
+    courseForm: CourseForm;
+    maxStudents: number;
+
+}

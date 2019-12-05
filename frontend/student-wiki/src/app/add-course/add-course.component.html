@@ -1,0 +1,90 @@
+<section class="container">
+
+  <div class="row justify-content-center">
+    <div class="card">
+      <article class="card-body">
+        <h4 class="card-title text-center mb-4 mt-1">Add new course</h4>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="form-group has-danger">
+            <div class="input-group">
+              <input formControlName="courseName" class="form-control"
+                [ngClass]="{ 'is-invalid': isFieldInvalid('courseName') }" placeholder="Course Name" type="text" />
+            </div>
+            <div *ngIf="isFieldInvalid('courseName')" class="invalid-feedback d-clock">
+              {{ getErrorMessage("courseName") }}
+            </div>
+          </div>
+
+          <div class="form-group has-danger">
+            <div class="input-group">
+              <textarea formControlName="description" class="form-control"
+                [ngClass]="{ 'is-invalid': isFieldInvalid('description') }" placeholder="description" type="text">
+                </textarea>
+            </div>
+            <div *ngIf="isFieldInvalid('description')" class="invalid-feedback d-clock">
+              {{ getErrorMessage("description") }}
+            </div>
+          </div>
+
+          <div class="form-group has-danger">
+            <label for="semester">Semester</label>
+            <select formControlName="semester" id="semseter">
+              <option *ngFor="let semester of [1,2,3,4,5,6,7,8,9]" [value]="semester">
+                {{semester}}
+              </option>
+            </select>
+            <div *ngIf="isFieldInvalid('semester')" class="invalid-feedback d-block">
+              {{ getErrorMessage("semester") }}
+            </div>
+          </div>
+
+          <div class="form-group has-danger">
+            <input formControlName="ects" class="form-control" [ngClass]="{ 'is-invalid': isFieldInvalid('ects') }"
+              placeholder="ECTS" type="number" />
+            <div *ngIf="isFieldInvalid('ects')" class="invalid-feedback d-block">
+              {{ getErrorMessage("ects") }}
+            </div>
+          </div>
+
+          <div class="form-group has-danger">
+            <label for="courseForm">Course Form</label>
+            <select formControlName="courseForm" id="courseForm">
+              <option *ngFor="let semester of [1,2,3,4,5,6,7,8,9]" [value]="semester">
+                {{semester}}
+              </option>
+            </select>
+            <div *ngIf="isFieldInvalid('lastname')" class="invalid-feedback d-block">
+              {{ getErrorMessage("semester") }}
+            </div>
+          </div>
+
+          <div class="form-group has-danger">
+            <input formControlName="maxSutdents" class="form-control"
+              [ngClass]="{ 'is-invalid': isFieldInvalid('maxSutdents') }" placeholder="Maximum number of studnets"
+              type="number" />
+            <div *ngIf="isFieldInvalid('maxStudents')" class="invalid-feedback d-block">
+              {{ getErrorMessage("ects") }}
+            </div>
+          </div>
+
+          <div class="form-group has-danger">
+            <input formControlName="image" class="form-control" [ngClass]="{ 'is-invalid': isFieldInvalid('image') }"
+              placeholder="URL to course image" type="text" />
+            <div *ngIf="isFieldInvalid('image')" class="invalid-feedback d-block">
+              {{ getErrorMessage("image") }}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">
+              Add
+            </button>
+          </div>
+
+        </form>
+      </article>
+
+    </div>
+
+  </div>
+</section>
