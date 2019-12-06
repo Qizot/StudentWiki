@@ -49,3 +49,7 @@ export const registerUser = (res, {email, firstname, lastname, password}) => {
         })
     });
 }
+
+export const isRequestAuthorized = (req, role) => {
+    return req && req.user && req.user.roles && req.user.roles.includes(role);
+}

@@ -7,7 +7,7 @@ const courseSchema = new mongoose.Schema({
     },
     image: {
         type: String,
-        match: /https?:[/|.|\w|\s|-]*\.(?:jpg|gif|png).*/g,
+        match: /https?:[/|.|\w|\s|-]*\.(?:jpg|gif|png|jpeg).*/g,
         required: true
     },
     description: {
@@ -56,7 +56,8 @@ const courseSchema = new mongoose.Schema({
     ],
     enrolledStudents: [{
         type: String,
-        unique: true
+        unique: true,
+        collation: { locale: 'en', strength: 2 }
     }]
 });
 

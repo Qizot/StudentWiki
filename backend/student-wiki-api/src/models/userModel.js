@@ -40,7 +40,6 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.methods.getSecureUser = function() {
-    console.log(this);
     return {
         id: this._id.toString(),
         firstname: this.firstname,
