@@ -26,7 +26,7 @@ export const registerRoute = (req, res) => {
         });
         return;
     }
-    registerUser(res, params);
+    registerUser(res, {firstname, lastname, email, password});
 }
 
 export const meRoute = (req, res) => {

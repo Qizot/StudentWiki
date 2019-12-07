@@ -43,7 +43,7 @@ export const registerUser = (res, {email, firstname, lastname, password}) => {
     })
     .catch(err => {
         const errMsg = err.code === 11000 ? "email is not unique" : "failed to create account";
-        return es.status(400).json({
+        return res.status(400).json({
             success: false,
             message: errMsg
         })

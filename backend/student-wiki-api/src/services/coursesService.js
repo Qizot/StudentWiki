@@ -39,12 +39,14 @@ export const createCourse = (res, params) => {
     .then(course => {
         return res.json({
             success: true,
-            message: "course has been created"
+            message: "course has been created",
+            courseId: course._id
         });
     }).catch(err => {
+        console.log(err);
         return res.status(400).json({
             success: false,
-            message: "invalid data format, make sure to match requirements"
+            message: "invalid data format, make sure to match requirements: " + err.errmsg
         });
     })
 }

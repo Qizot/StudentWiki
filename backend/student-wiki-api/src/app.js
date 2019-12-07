@@ -17,11 +17,17 @@ db.once('open', function() {
   console.log('connected');
 });
 
-let me = new User({
-    firstname: "jakub",
-    lastname: "perzylo",
-    email: "ukilol@interia.pl",
-    password: "dupa"
+User.findOne({email: "admin@gmail.com"})
+.then(admin => {
+    if (!admin) {
+        User.create({
+            firstname: "admin",
+            lastname: "admin",
+            email: "admin@gmail.com",
+            password: "admin",
+            roles: ["user", "admin"]
+        })
+    }
 });
 
 

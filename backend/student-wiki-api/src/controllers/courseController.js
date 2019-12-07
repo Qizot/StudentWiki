@@ -22,14 +22,14 @@ export const createCourseRoute = (req, res) => {
         return unauthorizedUser(res);
     }
 
-    const { name, description, ects, semester, courseForm, maxStudents} = req.body;
-    if ([name, description, ects, semester, courseForm, maxStudents].some(el => el === undefined)) {
+    const { name, description, ects, semester, courseForm, maxStudents, image} = req.body;
+    if ([name, description, ects, semester, courseForm, maxStudents, image].some(el => el === undefined)) {
         return res.status(400).json({
             success: false,
             message: "params are missing"
         });
     }
-    createCourse(res, req.body, req.user);
+    createCourse(res, { name, description, ects, semester, courseForm, maxStudents, image}, req.user);
 }
 
 export const deleteCourseRoute = (req, res) => {

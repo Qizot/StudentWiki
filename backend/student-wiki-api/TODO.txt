@@ -1,0 +1,2 @@
+jwt tokens should store only information about account like id because information in it 
+can get old, like roles that user has

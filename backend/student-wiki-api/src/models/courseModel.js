@@ -7,7 +7,12 @@ const courseSchema = new mongoose.Schema({
     },
     image: {
         type: String,
-        match: /https?:[/|.|\w|\s|-]*\.(?:jpg|gif|png|jpeg).*/g,
+        validate: {
+            validator: function(v) {
+              return /https?:[/|.|\w|\s|-]*\.(?:jpg|gif|png|jpeg).*/g.test(v);
+            },
+            message: "invalid image format"
+          },
         required: true
     },
     description: {
@@ -56,8 +61,6 @@ const courseSchema = new mongoose.Schema({
     ],
     enrolledStudents: [{
         type: String,
-        unique: true,
-        collation: { locale: 'en', strength: 2 }
     }]
 });
 
