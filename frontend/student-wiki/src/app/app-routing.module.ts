@@ -8,7 +8,7 @@ import { LoginLayoutComponent } from './layouts/login-layout.component';
 import { RegisterComponent } from './register/register.component';
 import { CourseListComponent } from './course-list/course-list.component';
 import { CourseComponent } from './course/course.component';
-import { AddCourseComponent } from './add-course/add-course.component';
+import { AddEditCourseComponent } from './add-edit-course/add-edit-course.component';
 
 
 const routes: Routes = [
@@ -27,7 +27,11 @@ const routes: Routes = [
       },
       {
         path: 'courses/add',
-        component: AddCourseComponent,
+        component: AddEditCourseComponent,
+      },
+      {
+        path: 'courses/edit/:id',
+        component: AddEditCourseComponent,
       },
       {
         path: 'courses/:id',

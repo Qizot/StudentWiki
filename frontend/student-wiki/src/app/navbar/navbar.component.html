@@ -13,7 +13,7 @@
         <li class="nav-item">
           <a [routerLink]="['/courses']" class="nav-link" href="#">Courses</a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="displayIfUserIs('admin')" class="nav-item">
           <a [routerLink]="['/courses/add']" class="nav-link" href="#">Add new course</a>
         </li>
       </ul>

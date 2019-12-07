@@ -20,7 +20,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { RateCourseComponent } from './rate-course/rate-course.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { AddCourseComponent } from './add-course/add-course.component';
+import { AddEditCourseComponent } from './add-edit-course/add-edit-course.component';
 import { SearchCoursesPipe } from './pipes/search-courses.pipe';
 import { CoursesFilterComponent } from './courses-filter/courses-filter.component';
 import { Ng5SliderModule } from 'ng5-slider';
@@ -38,7 +38,7 @@ import { Ng5SliderModule } from 'ng5-slider';
       CourseCardComponent,
       CourseComponent,
       RateCourseComponent,
-      AddCourseComponent,
+      AddEditCourseComponent,
       SearchCoursesPipe,
       CoursesFilterComponent,
    ],

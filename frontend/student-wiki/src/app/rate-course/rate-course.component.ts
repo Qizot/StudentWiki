@@ -6,6 +6,7 @@ import { User } from '../models/user';
 import { Course } from '../models/course';
 import { RatingValue } from '../models/rating';
 import { ServiceMessage } from '../helpers/service-message';
+import { displaySnackbar } from '../helpers/snackbar';
 
 @Component({
   selector: 'app-rate-course',
@@ -53,24 +54,16 @@ export class RateCourseComponent implements OnInit, OnChanges {
     this.currentRating = rating && rating.rating || null;
   }
 
-  displaySnackbar(message: ServiceMessage) {
-    this.snackbar.open(message.message, '', {
-      duration: 4000,
-      horizontalPosition: "left",
-      verticalPosition: "bottom",
-      panelClass: message.success ? "success-snackbar" : "failure-snackbar"
-    });
-  }
 
   submit() {
     this.courseService.rateCourse(this.course && this.course._id || null, this.authService.headers, this.currentRating)
     .subscribe(
       res => {
         this.courseRated.emit("course rated");
-        this.displaySnackbar({success: true, message: "Course has been rated"})
+        displaySnackbar({success: true, message: "Course has been rated"}, this.snackbar);
       },
       ({error}) => {
-        this.displaySnackbar({success: false, message: "Failed to rate course: " + error && error.message})
+        displaySnackbar({success: false, message: "Failed to rate course: " + error && error.message}, this.snackbar);
       },
       () => console.log("finished rating course")
     );

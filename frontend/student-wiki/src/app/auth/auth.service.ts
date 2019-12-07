@@ -28,9 +28,13 @@ export class AuthService {
       return of(true);
     }
 
+    return this.loadUser();
+  }
+
+  loadUser() {
     const headers = new HttpHeaders()
       .set("Content-Type", "application/json")
-      .set("Authorization", "Bearer " + token)
+      .set("Authorization", "Bearer " + localStorage.getItem("userToken"));
 
     return this.httpClient.get<User>(DOMAIN + "/me", {headers})
       .pipe(
@@ -71,8 +75,14 @@ export class AuthService {
       localStorage.setItem("userToken", token);
       headers.set("Authorization", token);
 
-      this.loggedIn = true;
-      this.router.navigate(['/']);
+      this.loadUser().subscribe(loaded => {
+        if (loaded) {
+          this.loggedIn = true;
+          this.router.navigate(['/']);
+        } else {
+          console.log("failed to get user from remote server");
+        }
+      })
     })
     .catch(err => {
       this.loggedIn = false;

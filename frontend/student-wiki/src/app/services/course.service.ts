@@ -29,7 +29,11 @@ export class CourseService {
 
   addCourse(course: AddCourse, headers: HttpHeaders) {
     return this.httpClient.post(DOMAIN + "/courses", course, {headers});
-  } 
+  }
+
+  updateCourse(courseId: string, course: AddCourse, headers: HttpHeaders) {
+    return this.httpClient.patch(DOMAIN + `/courses/${courseId}`, course, {headers});
+  }
 
   deleteCourse(id: string) {
     this.courses = this.courses.filter(course => course._id !== id);
