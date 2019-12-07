@@ -9,6 +9,7 @@ import { RegisterComponent } from './register/register.component';
 import { CourseListComponent } from './course-list/course-list.component';
 import { CourseComponent } from './course/course.component';
 import { AddEditCourseComponent } from './add-edit-course/add-edit-course.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 
 const routes: Routes = [
@@ -41,6 +42,11 @@ const routes: Routes = [
   {
     path: 'courses/:id',
     component: CourseComponent,
+  },
+  {
+    path: 'admin/dashboard',
+    component: AdminDashboardComponent,
+    canActivate: [AuthGuard],
   },
   { path: '**', redirectTo: '/home' }
 ];

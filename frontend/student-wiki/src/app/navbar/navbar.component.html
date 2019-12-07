@@ -10,11 +10,11 @@
             <span class="sr-only">(current)</span>
           </a>
         </li>
-        <li class="nav-item"  data-toggle="collapse" data-target=".navbar-collapse.show">
+        <li [ngClass]="{'active': isRouteActive('/courses')}" class="nav-item"  data-toggle="collapse" data-target=".navbar-collapse.show">
           <a [routerLink]="['/courses']" class="nav-link" href="#">Courses</a>
         </li>
-        <li *ngIf="displayIfUserIs('admin')" class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-          <a [routerLink]="['/courses/add']" class="nav-link" href="#">Add course</a>
+        <li [ngClass]="{'active': isRouteActive('/admin/dashboard')}" *ngIf="displayIfUserIs('admin')" class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+          <a [routerLink]="['/admin/dashboard']" class="nav-link" href="#">Dashboard</a>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto nav-flex-icons">

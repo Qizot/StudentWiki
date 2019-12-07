@@ -1,6 +1,7 @@
 --- add course
--- enroll on a course
 -- delete course
+-- admin dashboard
 
 
-*** when width goes under 960px (lg bootstrap) then hide filter and make it openable from side with animation like with culinary shock
+*** when width goes under 960px (lg bootstrap) then hide filter and make it openable from side with animation like with culinary shock 
+    | It looks pretty good on smartphones

@@ -24,6 +24,7 @@ import { AddEditCourseComponent } from './add-edit-course/add-edit-course.compon
 import { SearchCoursesPipe } from './pipes/search-courses.pipe';
 import { CoursesFilterComponent } from './courses-filter/courses-filter.component';
 import { Ng5SliderModule } from 'ng5-slider';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 @NgModule({
    declarations: [
@@ -41,6 +42,7 @@ import { Ng5SliderModule } from 'ng5-slider';
       AddEditCourseComponent,
       SearchCoursesPipe,
       CoursesFilterComponent,
+      AdminDashboardComponent,
    ],
    imports: [
       BrowserModule,

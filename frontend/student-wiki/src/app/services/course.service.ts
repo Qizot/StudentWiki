@@ -35,8 +35,8 @@ export class CourseService {
     return this.httpClient.patch(DOMAIN + `/courses/${courseId}`, course, {headers});
   }
 
-  deleteCourse(id: string) {
-    this.courses = this.courses.filter(course => course._id !== id);
+  deleteCourse(courseId: string, headers: HttpHeaders) {
+    return this.httpClient.delete(DOMAIN + `/courses/${courseId}`, {headers});
   }
 
   enrollOnCourse(courseId: string, headers: HttpHeaders) {

@@ -1,4 +1,6 @@
 <div class="card zebra-card hvr-grow">
+  <img *ngIf="enableModifiers" (click)="deleteCourse()" class="delete-icon" src="../../assets/delete-24px.svg">
+  <img *ngIf="enableModifiers" (click)="editCourse()" class="edit-icon" src="../../assets/create-24px.svg">
   <img class="card-img-top" [src]="course.image" />
   <div class="card-body">
     <h3 class="card-title">{{ course.name }}</h3>
