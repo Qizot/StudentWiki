@@ -1,21 +1,23 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, OnChanges, SimpleChanges } from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import { CourseService } from '../course.service';
+import { CourseService } from '../services/course.service';
 import { AuthService } from '../auth/auth.service';
 import { User } from '../models/user';
 import { Course } from '../models/course';
 import { RatingValue } from '../models/rating';
 import { ServiceMessage } from '../helpers/service-message';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-rate-course',
   templateUrl: './rate-course.component.html',
-  styleUrls: ['./rate-course.component.scss']
+  styleUrls: ['./rate-course.component.scss'],
 })
-export class RateCourseComponent implements OnInit {
+export class RateCourseComponent implements OnInit, OnChanges {
 
   @Input() course: Course
   currentRating: RatingValue = null;
+  isEnrolled: boolean;
   user: User;
 
   constructor(
@@ -26,6 +28,15 @@ export class RateCourseComponent implements OnInit {
 
   ngOnInit() {
     this.authService.user.subscribe(user => this.user = user);
+    this.isUserEnrolled();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.isUserEnrolled()
+  }
+
+  isUserEnrolled() {
+    this.isEnrolled = this.course && this.course.enrolledStudents.includes(this.user && this.user.id)
   }
 
   displaySnackbar(message: ServiceMessage) {
@@ -38,8 +49,15 @@ export class RateCourseComponent implements OnInit {
   }
 
   submit() {
-    const message = this.courseService.rateCourse(this.course && this.course.id || null, this.user, this.currentRating);
-    this.displaySnackbar(message);
+    this.courseService.rateCourse(this.course && this.course._id || null, this.authService.headers, this.currentRating)
+    .subscribe(
+      res => this.displaySnackbar({success: true, message: "Course has been rated"}),
+      ({error}) => {
+        console.log(error);
+        this.displaySnackbar({success: false, message: "Failed to rate course: " + error && error.message})
+      },
+      () => console.log("finished rating course")
+    );
   }
 
 }

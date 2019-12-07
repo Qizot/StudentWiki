@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import {CourseForm, AddCourse} from '../models/course';
 import { formatNumber } from '@angular/common';
-import { CourseService } from '../course.service';
+import { CourseService } from '../services/course.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -77,10 +77,10 @@ export class AddCourseComponent implements OnInit {
 
   onSubmit() {
     this.formSubmitAttempted = true;
-    if (this.form.valid) {
-      this.courseService.addCourse({...this.form.value, name: this.form.value.courseName});
-      this.router.navigate(["/courses"]);
-    }
+    // if (this.form.valid) {
+    //   this.courseService.addCourse({...this.form.value, name: this.form.value.courseName});
+    //   this.router.navigate(["/courses"]);
+    // }
   }
 
 }

@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import {
   CourseService
-} from '../course.service';
+} from '../services/course.service';
 import {
   Course
 } from '../models/course';

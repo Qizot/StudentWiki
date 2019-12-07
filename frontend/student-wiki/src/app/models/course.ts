@@ -8,7 +8,7 @@ export enum CourseForm {
 }
 
 export interface Course {
-    id: string;
+    _id: string;
     name: string;
     image: string;
     description: string;

@@ -3,7 +3,7 @@
   <div class="row justify-content-center">
     <!-- /.col-lg-3 -->
 
-    <section class="col-lg-8">
+    <section *ngIf="course" class="col-lg-8">
       <h1 class="my-4" style="color: white">Course:</h1>
       <article class="card mt-4 pb-2">
         <img class="card-img-top img-fluid" [src]="course.image">
@@ -13,6 +13,10 @@
           <p class="card-text">{{course.description}}</p>
           <h5 class="card-title">Course rating: </h5>
           <span class="text-warning">{{getStars()}} {{currentRating | number: "1.2-2"}}</span>
+        </div>
+        <div class="card-footer text-center">
+            <button *ngIf="!isEnrolled" class="btn btn-success" (click)="enroll()">Enroll on course</button>
+            <button *ngIf="isEnrolled" class="btn btn-danger" (click)="delist()">Delist from course</button>
         </div>
       </article>
       <app-rate-course [course]="course"></app-rate-course>

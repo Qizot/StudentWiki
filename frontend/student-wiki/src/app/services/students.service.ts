@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import * as StudentsFile from "../mocks/students.json";
-import { Student } from './models/studnet.js';
+import { Student } from '../models/studnet.js';
 
 @Injectable({
   providedIn: 'root'
