@@ -51,6 +51,33 @@ export const createCourse = (res, params) => {
     })
 }
 
+export const updateCourse = (res, courseId, params) => {
+    Course.findOneAndUpdate(
+        {
+            _id: courseId
+        },
+        {
+            $set: params
+        }
+    ).then(course => {
+        if (!course) {
+            return res.status(404).json({
+                success: false, 
+                message: "course has not been found"
+            });
+        }
+        return res.json({
+            success: true,
+            message: "course has been updated"
+        });
+    }).catch(err => {
+        return res.status(500).json({
+            success: false,
+            message: "failed to update course: " + err.errmsg
+        });
+    })
+}
+
 export const deleteCourse = (res, courseId) => {
     Course.findOneAndRemove({ _id: courseId }) 
     .exec(function(err, course) {
