@@ -5,6 +5,7 @@ import logger from 'morgan';
 import indexRouter from './routes/index';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import bcrypt from 'bcrypt';
 
 import User from './models/userModel';
 
@@ -25,11 +26,13 @@ User.findOne({email: "admin@gmail.com"})
             firstname: "admin",
             lastname: "admin",
             email: "admin@gmail.com",
-            password: "admin",
+            password: bcrypt.hashSync("admin", 10),
             roles: ["user", "admin"]
         })
     }
-});
+}).catch(err => {
+    console.log(err);
+})
 
 
 

@@ -4,8 +4,6 @@ import { createToken } from './helpers';
 
 export const loginUser = (res, {email, password}) => {
 
-    let hash = bcrypt.hashSync(password, 10);
-
     User.findOne({email: email}, (err, user) => {
         if (err || !user) {
             return res.status(404).json({
@@ -14,7 +12,7 @@ export const loginUser = (res, {email, password}) => {
             });
         }
 
-        if (!bcrypt.compareSync(password, hash)) {
+        if (!bcrypt.compareSync(password, user.password)) {
             return res.status(401).json({
                 success: false,
                 message: "invalid password"
@@ -33,7 +31,6 @@ export const loginUser = (res, {email, password}) => {
 
 export const registerUser = (res, {email, firstname, lastname, password}) => {
     const hash = bcrypt.hashSync(password, 10);
-
     User.create({email, firstname, lastname, password: hash})
     .then(user => {
         return res.status(200).json({
