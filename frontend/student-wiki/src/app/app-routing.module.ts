@@ -13,48 +13,36 @@ import { AddEditCourseComponent } from './add-edit-course/add-edit-course.compon
 
 const routes: Routes = [
   {
-    path: '',
-    component: HomeLayoutComponent,
-    canActivate: [AuthGuard],
-    children: [
-      {
-        path: 'home',
-        component: HomeComponent
-      },
-      {
-        path: 'courses',
-        component: CourseListComponent,
-      },
-      {
-        path: 'courses/add',
-        component: AddEditCourseComponent,
-      },
-      {
-        path: 'courses/edit/:id',
-        component: AddEditCourseComponent,
-      },
-      {
-        path: 'courses/:id',
-        component: CourseComponent,
-      },
-    ]
+    path: 'login',
+    component: LoginComponent
   },
   {
-    path: '',
-    component: LoginLayoutComponent,
-    children: [
-      {
-        path: 'login',
-        component: LoginComponent
-      },
-      {
-        path: 'register',
-        component: RegisterComponent
-      }
-    ]
+    path: 'register',
+    component: RegisterComponent
   },
-
-  { path: '**', redirectTo: '' }
+  {
+    path: 'home',
+    component: HomeComponent
+  },
+  {
+    path: 'courses',
+    component: CourseListComponent,
+  },
+  {
+    path: 'courses/add',
+    component: AddEditCourseComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'courses/edit/:id',
+    component: AddEditCourseComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'courses/:id',
+    component: CourseComponent,
+  },
+  { path: '**', redirectTo: '/home' }
 ];
 
 @NgModule({

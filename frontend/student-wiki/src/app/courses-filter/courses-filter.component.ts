@@ -61,6 +61,18 @@ export class CoursesFilterComponent implements OnInit {
   ngOnInit() {
   }
 
+  clear() {
+    this.form.reset({
+      name: "",
+      semester: [1, 9],
+      maxStudents: [1, 1000],
+      rating: [0, 5],
+      ects: [1, 30],
+      courseForm: ''
+    });
+    this.onSubmit();
+  }
+
   onSubmit() {
 
     const {name, semester, rating, maxStudents, ects, courseForm} = this.form.value;
@@ -73,7 +85,6 @@ export class CoursesFilterComponent implements OnInit {
       ects: {min: ects[0], max: ects[1]},
       courseForm
     }
-    console.log(config);
     this.searchConfig.emit(config);
   }
 

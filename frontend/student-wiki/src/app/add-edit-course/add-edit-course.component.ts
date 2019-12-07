@@ -7,8 +7,7 @@ import {
   FormGroup,
   Validators
 } from '@angular/forms';
-import {CourseForm, AddCourse} from '../models/course';
-import { formatNumber } from '@angular/common';
+import {CourseForm } from '../models/course';
 import { CourseService } from '../services/course.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
@@ -144,7 +143,6 @@ export class AddEditCourseComponent implements OnInit {
         () => console.log("finished updating course")
       );
     } else {
-      console.log(this.form)
       displaySnackbar({success: false, message: "Invalid form"}, this.snackbar);
     }
   }

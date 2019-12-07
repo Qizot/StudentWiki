@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, of } from 'rxjs';
+import { BehaviorSubject, of, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { User, LoginUser, RegisterUser } from '../models/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DOMAIN } from '../config';
-import { take, map } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
+import { ServiceMessage } from '../helpers/service-message';
 
 interface AuthToken {
   token: string;
@@ -15,20 +16,24 @@ interface AuthToken {
 })
 export class AuthService {
 
-  private loggedIn: boolean = false;
+  private loggedIn = new BehaviorSubject<boolean>(false);
   private currentUser = new BehaviorSubject<User>(null);
+  private loginErr = new Subject<ServiceMessage>();
+
+
+  get loginError() {
+    return this.loginErr.asObservable();
+  }
 
   get isLoggedIn() {
-    const token = localStorage.getItem("userToken");
+    const token = localStorage["userToken"];
     if (!token) {
-      return of(false);
+      this.loggedIn.next(false);
+      return this.loggedIn.asObservable();
     }
 
-    if (this.loggedIn) {
-      return of(true);
-    }
-
-    return this.loadUser();
+    this.loadUser();
+    return this.loggedIn.asObservable();
   }
 
   loadUser() {
@@ -36,16 +41,18 @@ export class AuthService {
       .set("Content-Type", "application/json")
       .set("Authorization", "Bearer " + localStorage.getItem("userToken"));
 
-    return this.httpClient.get<User>(DOMAIN + "/me", {headers})
-      .pipe(
-        take(1),
-        map((user: User, error) => {
-          if (error)
-            return false;
-          this.loggedIn = true;
-          this.currentUser.next(user);
-          return true;
-        })
+    this.httpClient.get<User>(DOMAIN + "/me", {headers})
+      .subscribe(
+          user => {
+            this.loggedIn.next(true);
+            this.currentUser.next(user);
+            this.loginErr.next(null);
+          },
+          ({error}) => {
+            this.loggedIn.next(false);
+            this.currentUser.next(null);
+            this.loginErr.next(error);
+          }
       );
   }
 
@@ -56,7 +63,7 @@ export class AuthService {
   get headers() {
     return new HttpHeaders()
       .set("Content-Type", "application/json")
-      .set("Authorization", "Bearer " + localStorage.getItem("userToken"));
+      .set("Authorization", "Bearer " + localStorage["userToken"]);
   }
 
   constructor(
@@ -72,21 +79,16 @@ export class AuthService {
     .then(response => {
       const {token} = response;
 
-      localStorage.setItem("userToken", token);
+      localStorage["userToken"] = token;
+      // localStorage.setItem("userToken", token);
       headers.set("Authorization", token);
 
-      this.loadUser().subscribe(loaded => {
-        if (loaded) {
-          this.loggedIn = true;
-          this.router.navigate(['/']);
-        } else {
-          console.log("failed to get user from remote server");
-        }
-      })
+      this.loadUser();
     })
-    .catch(err => {
-      this.loggedIn = false;
-      console.log(err);
+    .catch(({error}) => {
+      console.log("error while loging in: ", error);
+      this.loggedIn.next(false);
+      this.loginErr.next(error);
     });
   }
 
@@ -95,14 +97,23 @@ export class AuthService {
     this.httpClient.post(DOMAIN + "/register", user, {headers}).toPromise()
     .then(response => {
       this.login(user);
+      this.loginErr.pipe(take(1)).subscribe(err => {
+        if (!err) {
+          this.router.navigate(['/home']);
+        } else {
+          console.log(err);
+        }
+      })
     })
-    .catch(err => {
-      console.log(err);
+    .catch(({error}) => {
+      this.loginErr.next(error);
+      console.log(error);
     })
   }
 
   logout() {
-    this.loggedIn = false;
+    localStorage.removeItem("userToken");
+    this.loggedIn.next(false);
     this.currentUser.next(null);
     this.router.navigate(['/login']);
   }

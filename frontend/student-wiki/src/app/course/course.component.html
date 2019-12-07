@@ -14,7 +14,7 @@
           <h5 class="card-title">Course rating: </h5>
           <span class="text-warning">{{getStars()}} {{currentRating | number: "1.2-2"}}</span>
         </div>
-        <div class="card-footer text-center">
+        <div *ngIf="user" class="card-footer text-center">
             <button *ngIf="!isEnrolled" class="btn btn-success" (click)="enroll()">Enroll on course</button>
             <button *ngIf="isEnrolled" class="btn btn-danger" (click)="delist()">Delist from course</button>
         </div>

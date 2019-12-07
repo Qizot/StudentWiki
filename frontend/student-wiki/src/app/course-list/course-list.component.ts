@@ -30,7 +30,6 @@ export class CourseListComponent implements OnInit {
 
 
   setSearchConfig(config: CourseSearchConfig) {
-    console.log(config);
     this.searchConfig = config;
   }
   getCourses() {
