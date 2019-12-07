@@ -24,7 +24,7 @@ router.delete('/courses/:courseId', checkToken, deleteCourseRoute);
 router.post('/courses/:courseId/enroll', checkToken, enrollOnCourseRoute);
 router.post('/courses/:courseId/delist', checkToken, delistFromCourseRoute);
 router.post('/courses/:courseId/rate', checkToken, rateCourseRoute);
-router.patch('/courses/:courseId/rate', checkToken, rateCourseRoute);
+router.put('/courses/:courseId/rate', checkToken, rateCourseRoute);
 router.delete('/courses/:courseId/rate', checkToken, rateCourseRoute);
 
 

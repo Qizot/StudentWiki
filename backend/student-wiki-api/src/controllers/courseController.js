@@ -94,7 +94,7 @@ export const rateCourseRoute = (req, res) => {
         case "POST":
             rateCourse(res, req.params.courseId, req.body.rating, req.user);
             break;
-        case "PATCH":
+        case "PUT":
             rateCourseUpdate(res, req.params.courseId, req.body.rating, req.user);
             break;
         case "DELETE":
