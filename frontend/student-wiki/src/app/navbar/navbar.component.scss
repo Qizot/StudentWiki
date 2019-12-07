@@ -33,3 +33,20 @@
     color: white;
     background: #0e131b;
 }
+
+.logout-btn {
+    width: 100%;
+    text-align: center;
+    color: white !important;
+}
+
+.card {
+    border: none;
+    .card-body {
+        color: white;
+    }
+}
+
+.card, .dropdown-menu {
+    background-color: #201d1d;
+}

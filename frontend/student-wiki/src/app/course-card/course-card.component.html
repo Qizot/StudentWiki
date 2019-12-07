@@ -9,7 +9,7 @@
       <li class="list-group-item"><b>ECTS:</b> {{ course.ects }}</li>
       <li class="list-group-item"><b>Form:</b> {{ course.courseForm }}</li>
       <li class="list-group-item">
-        <b>Rating:</b> <span class="text-warning">{{getStarsString()}}</span> {{ currentRating | number: "1.2-2" }}
+        <b>Rating:</b> <app-star-rating [rating]="currentRating"></app-star-rating>
       </li>
     </ul>
   </div>

@@ -11,12 +11,24 @@
           <h3 class="card-title">{{course.name}}</h3>
           <h5 class="card-title">Description: </h5>
           <p class="card-text">{{course.description}}</p>
+          <h5 class="card-title">Course form: </h5>
+          <p class="card-text">{{course.courseForm}}</p>
+          <h5 class="card-title">Semester: </h5>
+          <p class="card-text">{{course.semester}}</p>
+          <h5 class="card-title">ECTS: </h5>
+          <p class="card-text">{{course.ects}}</p>
+          <h5 class="card-title">Students: </h5>
+          <p class="card-text">{{getStudentsAmount()}} / {{course.maxStudents}}</p>
+
           <h5 class="card-title">Course rating: </h5>
-          <span class="text-warning">{{getStars()}} {{currentRating | number: "1.2-2"}}</span>
+          <app-star-rating [rating]="currentRating"></app-star-rating>
         </div>
         <div *ngIf="user" class="card-footer text-center">
+          <button *ngIf="!isEnrolled && isCourseFull()" class="btn btn-secondary" disabled (click)="enroll()">Course is full</button>
+          <div *ngIf=!isCourseFull()>
             <button *ngIf="!isEnrolled" class="btn btn-success" (click)="enroll()">Enroll on course</button>
             <button *ngIf="isEnrolled" class="btn btn-danger" (click)="delist()">Delist from course</button>
+          </div>
         </div>
       </article>
       <app-rate-course [course]="course" (courseRated)="getCourse()"></app-rate-course>

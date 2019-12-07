@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.isLoggedIn$.unsubscribe();
   }
 
-  isFieldInvalid(field: string) { // {6}
+  isFieldInvalid(field: string) {
     const isValid = (
       (!this.form.get(field).valid && this.form.get(field).touched) ||
       (this.form.get(field).untouched && this.formSubmitAttempt)

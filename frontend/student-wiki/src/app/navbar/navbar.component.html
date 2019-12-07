@@ -1,36 +1,51 @@
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-    <a class="navbar-brand" href="#">StudentWiki</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-toggler-icon">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbar-toggler-icon">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item"  data-toggle="collapse" data-target=".navbar-collapse.show">
-          <a [ngClass]="{'active': isRouteActive('/home')}" [routerLink]="['/home']" class="nav-link">Home
-            <span class="sr-only">(current)</span>
-          </a>
-        </li>
-        <li [ngClass]="{'active': isRouteActive('/courses')}" class="nav-item"  data-toggle="collapse" data-target=".navbar-collapse.show">
-          <a [routerLink]="['/courses']" class="nav-link" href="#">Courses</a>
-        </li>
-        <li [ngClass]="{'active': isRouteActive('/admin/dashboard')}" *ngIf="displayIfUserIs('admin')" class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-          <a [routerLink]="['/admin/dashboard']" class="nav-link" href="#">Dashboard</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav ml-auto nav-flex-icons">
+  <a class="navbar-brand" href="#">StudentWiki</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-toggler-icon">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbar-toggler-icon">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+        <a [ngClass]="{'active': isRouteActive('/home')}" [routerLink]="['/home']" class="nav-link">Home
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li [ngClass]="{'active': isRouteActive('/courses')}" class="nav-item" data-toggle="collapse"
+        data-target=".navbar-collapse.show">
+        <a [routerLink]="['/courses']" class="nav-link" href="#">Courses</a>
+      </li>
+      <li [ngClass]="{'active': isRouteActive('/admin/dashboard')}" *ngIf="displayIfUserIs('admin')" class="nav-item"
+        data-toggle="collapse" data-target=".navbar-collapse.show">
+        <a [routerLink]="['/admin/dashboard']" class="nav-link" href="#">Dashboard</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto nav-flex-icons">
 
-        <li class="nav-item dropdown" data-toggle="collapse" data-target=".navbar-collapse.show">
-          <a class="nav-link dropdown-toggle" id="navbar-user" data-toggle="dropdown">
-            <i class="far fa-user"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right">
-              <div *ngIf="user" class="user">{{user.firstname}} {{user.lastname}}</div>
-              <div class="dropdown-divider"></div>
-              <a *ngIf="user" class="dropdown-item" (click)="logout()" data-toggle="collapse" data-target=".navbar-collapse.show">Logut</a>
-              <a *ngIf="!user" [routerLink]="['/login']" class="dropdown-item">Login</a>
-              <a *ngIf="!user" [routerLink]="['/register']" class="dropdown-item">Register</a>
+      <li class="nav-item dropdown" data-toggle="collapse" data-target=".navbar-collapse.show">
+        <a class="nav-link dropdown-toggle" id="navbar-user" data-toggle="dropdown">
+          <i class="far fa-user"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <div class="card">
+            <div *ngIf="user">
+              <div class="card-body">
+                <h5 class="card-title">{{user.firstname}} {{user.lastname}}</h5>
+                <p class="card-text">{{user.email}}</p>
+              </div>
+              <div class="card-body">
+                <a *ngIf="user" class="btn btn-dark logout-btn" (click)="logout()" data-toggle="collapse"
+                  data-target=".navbar-collapse.show">Logut</a>
+              </div>
+            </div>
+            <div *ngIf="!user">
+              <div class="card-body">
+                <a *ngIf="!user" [routerLink]="['/login']" class="btn btn-dark logout-btn mb-2">Login</a>
+                <a *ngIf="!user" [routerLink]="['/register']" class="btn btn-dark logout-btn">Register</a>
+              </div>
+            </div>
           </div>
-        </li>
-      </ul>
-    </div>
-  </nav>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

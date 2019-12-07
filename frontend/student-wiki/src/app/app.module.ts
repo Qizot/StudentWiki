@@ -25,6 +25,7 @@ import { SearchCoursesPipe } from './pipes/search-courses.pipe';
 import { CoursesFilterComponent } from './courses-filter/courses-filter.component';
 import { Ng5SliderModule } from 'ng5-slider';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { StarRatingComponent } from './star-rating/star-rating.component';
 
 @NgModule({
    declarations: [
@@ -43,6 +44,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
       SearchCoursesPipe,
       CoursesFilterComponent,
       AdminDashboardComponent,
+      StarRatingComponent,
    ],
    imports: [
       BrowserModule,

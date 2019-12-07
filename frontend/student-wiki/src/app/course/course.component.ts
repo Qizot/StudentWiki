@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CourseService } from '../services/course.service';
 import { Course } from '../models/course';
-import { starRating, getCourseRating } from '../helpers/helpers';
+import { getCourseRating } from '../helpers/helpers';
 import { User } from '../models/user';
 import { AuthService } from '../auth/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -19,6 +19,7 @@ export class CourseComponent implements OnInit {
 
   course: Course;
   currentRating: number;
+  students: number;
   user: User;
   isEnrolled: boolean = false;
 
@@ -51,8 +52,12 @@ export class CourseComponent implements OnInit {
     return getCourseRating(this.course);
   }
 
-  getStars() {
-    return starRating(this.currentRating);
+  getStudentsAmount() {
+    return this.course.enrolledStudents.length;
+  }
+
+  isCourseFull() {
+    return this.course.enrolledStudents.length >= this.course.maxStudents;
   }
 
   enroll() {

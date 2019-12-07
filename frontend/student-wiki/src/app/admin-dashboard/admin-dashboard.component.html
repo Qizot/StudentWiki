@@ -1,13 +1,16 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-3 p-0">
-            <a [routerLink]="['/courses/add']" class="btn btn-success my-1 add-course">Add Course</a>
-            <app-courses-filter  (searchConfig)="setSearchConfig($event)"></app-courses-filter>
-        </div>
-        <div class="container col-sm-9">
-            <div class="row justify-content-center align-items-center">
-                <app-course-card [enableModifiers]="true" (courseDeleted)="getCourses()" class=" col-sm-4 col-md-3 m-2 p-3 zebra-card" *ngFor="let course of (courses | searchCourses: searchConfig)" [course]="course"></app-course-card>
-            </div>
-        </div>
+  <div class="row">
+    <div class="col-sm-5 col-lg-4 col-xl-3 p-0">
+      <a [routerLink]="['/courses/add']" class="btn btn-success my-1 add-course">Add Course</a>
+      <app-courses-filter (searchConfig)="setSearchConfig($event)"></app-courses-filter>
     </div>
+    <div class="col-sm-7 col-lg-8 col-xl-9">
+      <div class="row justify-content-center align-items-center">
+        <app-course-card [enableModifiers]="true" (courseDeleted)="getCourses()" class=" col-sm-4 col-md-3 m-2 p-3 zebra-card"
+          *ngFor="let course of (courses | searchCourses: searchConfig)" [course]="course"></app-course-card>
+      </div>
+    </div>
+  </div>
 </div>
+    
+      

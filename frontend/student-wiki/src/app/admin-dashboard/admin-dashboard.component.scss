@@ -2,3 +2,14 @@
     width: 100%;
     text-align: center;
 }
+
+.zebra-card {
+    min-width: 280px;
+    border-radius: 20px;
+    &:nth-child(even) {
+        background: #1d292f;
+    }
+    &:nth-child(odd) {
+        background: #0c0a0a;
+    }
+}
