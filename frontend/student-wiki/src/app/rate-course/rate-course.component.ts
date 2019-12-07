@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { CourseService } from '../services/course.service';
 import { AuthService } from '../auth/auth.service';
@@ -6,7 +6,6 @@ import { User } from '../models/user';
 import { Course } from '../models/course';
 import { RatingValue } from '../models/rating';
 import { ServiceMessage } from '../helpers/service-message';
-import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-rate-course',
@@ -17,8 +16,11 @@ export class RateCourseComponent implements OnInit, OnChanges {
 
   @Input() course: Course
   currentRating: RatingValue = null;
-  isEnrolled: boolean;
+  isEnrolled: boolean = false;
+  isRated: boolean = false;
   user: User;
+
+  @Output() courseRated = new EventEmitter(); 
 
   constructor(
     private courseService: CourseService,
@@ -27,16 +29,28 @@ export class RateCourseComponent implements OnInit, OnChanges {
     ) { }
 
   ngOnInit() {
-    this.authService.user.subscribe(user => this.user = user);
-    this.isUserEnrolled();
+    this.authService.user.subscribe(user => {
+      this.user = user;
+      this.calculateFields(user);
+    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.isUserEnrolled()
+    this.calculateFields(this.user);
   }
 
-  isUserEnrolled() {
+  calculateFields(user: User) {
+    if (!this.user) {
+      this.isEnrolled = false;
+      this.currentRating = null;
+      this.isRated = false;
+      return;
+    }
+    
     this.isEnrolled = this.course && this.course.enrolledStudents.includes(this.user && this.user.id)
+    const rating = this.course && this.course.ratings.find(r => r.studentId === this.user.id);
+    this.isRated = !!rating;
+    this.currentRating = rating && rating.rating || null;
   }
 
   displaySnackbar(message: ServiceMessage) {
@@ -51,9 +65,11 @@ export class RateCourseComponent implements OnInit, OnChanges {
   submit() {
     this.courseService.rateCourse(this.course && this.course._id || null, this.authService.headers, this.currentRating)
     .subscribe(
-      res => this.displaySnackbar({success: true, message: "Course has been rated"}),
+      res => {
+        this.courseRated.emit("course rated");
+        this.displaySnackbar({success: true, message: "Course has been rated"})
+      },
       ({error}) => {
-        console.log(error);
         this.displaySnackbar({success: false, message: "Failed to rate course: " + error && error.message})
       },
       () => console.log("finished rating course")

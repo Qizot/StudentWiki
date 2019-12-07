@@ -19,7 +19,7 @@
             <button *ngIf="isEnrolled" class="btn btn-danger" (click)="delist()">Delist from course</button>
         </div>
       </article>
-      <app-rate-course [course]="course"></app-rate-course>
+      <app-rate-course [course]="course" (courseRated)="getCourse()"></app-rate-course>
     </section>
 
   </div>

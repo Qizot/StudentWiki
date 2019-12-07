@@ -1,11 +1,13 @@
 <article *ngIf="user" class="card my-4 pb-2">
     <div class="card-body text-center">
         <div *ngIf="isEnrolled">
-            <h3 class="my-4" >Rate course as you wish, remember not to be too violent!</h3>
+            <h3 *ngIf="!isRated" class="my-4">Rate course as you wish, remember not to be too violent!</h3>
+            <h3 *ngIf="isRated" class="my-4">Your current course rating!</h3>
             <div>
-                <ngb-rating class="stars" [(rate)]="currentRating" max="5"></ngb-rating>
+                <ngb-rating class="stars" [(rate)]="currentRating" max="5" [readonly]="isRated"></ngb-rating>
             </div>
-            <button 
+            <button
+                *ngIf="!isRated"
                 class="btn btn-success" 
                 (click)="submit()"
                 [disabled]="!currentRating"
