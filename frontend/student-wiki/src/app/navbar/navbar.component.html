@@ -13,22 +13,22 @@
         <li class="nav-item"  data-toggle="collapse" data-target=".navbar-collapse.show">
           <a [routerLink]="['/courses']" class="nav-link" href="#">Courses</a>
         </li>
-        <li *ngIf="displayIfUserIs('admin')" class="nav-item">
+        <li *ngIf="displayIfUserIs('admin')" class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
           <a [routerLink]="['/courses/add']" class="nav-link" href="#">Add course</a>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto nav-flex-icons">
 
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" data-toggle="collapse" data-target=".navbar-collapse.show">
           <a class="nav-link dropdown-toggle" id="navbar-user" data-toggle="dropdown">
             <i class="far fa-user"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-right">
               <div *ngIf="user" class="user">{{user.firstname}} {{user.lastname}}</div>
               <div class="dropdown-divider"></div>
-              <a *ngIf="user" class="dropdown-item" (click)="logout()">Logut</a>
-              <a *ngIf="!user" [routerLink]="['/login']" class="dropdown-item" href="#">Login</a>
-              <a *ngIf="!user" [routerLink]="['/register']" class="dropdown-item" href="#">Register</a>
+              <a *ngIf="user" class="dropdown-item" (click)="logout()" data-toggle="collapse" data-target=".navbar-collapse.show">Logut</a>
+              <a *ngIf="!user" [routerLink]="['/login']" class="dropdown-item">Login</a>
+              <a *ngIf="!user" [routerLink]="['/register']" class="dropdown-item">Register</a>
           </div>
         </li>
       </ul>
