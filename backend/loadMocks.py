@@ -1,7 +1,7 @@
 import requests
 import json
 
-DOMAIN = 'http://localhost:3000'
+DOMAIN = 'http://0.0.0.0:3000'
 
 CREATE_COURSE = DOMAIN + '/api/courses'
 
