@@ -6,17 +6,21 @@ import indexRouter from './routes/index';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import bcrypt from 'bcrypt';
-
 import User from './models/userModel';
 
-mongoose.connect('mongodb://localhost/student_wiki', {
+const port = process.env.PORT || 3000
+const host = process.env.HOST || "localhost"
+const mongoHost = process.env.MONGO || "localhost"
+
+mongoose.set('useCreateIndex', true);
+mongoose.connect(`mongodb://${mongoHost}/student_wiki`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
-  console.log('connected');
+  console.log(`Connected with mongodb database instance: ${mongoHost}`);
 });
 
 User.findOne({email: "admin@gmail.com"})
@@ -49,4 +53,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 app.use('/api', indexRouter);
 
+
+
+app.listen(port, host, (e)=> {
+    if(e) {
+        throw new Error('Internal Server Error');
+    }
+    console.log(`Server is running on ${host}:${port}`);
+});
 export default app;
