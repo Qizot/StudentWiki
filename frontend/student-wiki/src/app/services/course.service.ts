@@ -1,20 +1,15 @@
 import { Injectable } from '@angular/core';
-import * as Courses from '../../mocks/courses.json';
 import { Course, AddCourse } from '../models/course';
-import { of } from 'rxjs';
-import { User } from '../models/user.js';
 import { RatingValue } from '../models/rating.js';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { DOMAIN } from '../config.js';
-import { take, map, catchError } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
+const DOMAIN = environment.domain;
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseService {
-
-  private courses = (Courses as any).default as Course[];
 
   constructor(private httpClient: HttpClient) {
   }

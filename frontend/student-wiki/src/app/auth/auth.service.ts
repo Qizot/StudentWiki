@@ -3,9 +3,11 @@ import { BehaviorSubject, of, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { User, LoginUser, RegisterUser } from '../models/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { DOMAIN } from '../config';
+import {environment} from '../../environments/environment';
 import { take } from 'rxjs/operators';
 import { ServiceMessage } from '../helpers/service-message';
+
+const DOMAIN = environment.domain;
 
 interface AuthToken {
   token: string;
@@ -15,6 +17,7 @@ interface AuthToken {
   providedIn: 'root'
 })
 export class AuthService {
+
 
   private loggedIn = new BehaviorSubject<boolean>(false);
   private currentUser = new BehaviorSubject<User>(null);
