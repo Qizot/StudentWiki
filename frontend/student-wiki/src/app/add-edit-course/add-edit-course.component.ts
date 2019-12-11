@@ -82,8 +82,15 @@ export class AddEditCourseComponent implements OnInit {
       return this.formSubmitAttempted;
     }
 
-    return (!field.valid && (field.touched && !this.editMode)) ||
-      ((field.untouched &&  !this.editMode) && this.formSubmitAttempted);
+    if (this.editMode) {
+      const isValid = (
+        (!field.valid && field.touched) ||
+        (field.untouched && this.formSubmitAttempted)
+      );
+      return isValid;
+    } else {
+      return field.invalid;
+    }
   }
 
   getErrorMessage(field: string) {
@@ -91,9 +98,9 @@ export class AddEditCourseComponent implements OnInit {
       courseName: "Please eneter course name",
       description: "Please enter description",
       semester: "Please choose semster",
-      ects: "Please enter correct number of ECTS points",
+      ects: "Please enter correct number of ECTS points (1-30)",
       courseForm: "Please choose course form",
-      maxStudents: "Please specify maximum number of students allowed"
+      maxStudents: "Please specify maximum number of students allowed (1-1000)"
     }
 
     return messages[field];

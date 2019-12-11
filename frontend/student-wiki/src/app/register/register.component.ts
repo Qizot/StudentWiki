@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]],
       verifyPassword: ['', [Validators.required, this.matchValues('password')]]
     });
   }
@@ -61,7 +61,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   getErrorMessage(field: string) {
     const messages = {
       email: "Please enter email with valid format",
-      password: "Please enter your password",
+      password: this.form.value.password.length < 6 ? "Password must have at least 6 characters" : "Please enter your password",
       verifyPassword: "Passwords must match",
       firstname: "Please eneter your name",
       lastname: "Please eneter your last name",
