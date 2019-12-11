@@ -32,7 +32,10 @@ export class CourseComponent implements OnInit {
 
   ngOnInit() {
     this.getCourse();
-    this.authService.user.subscribe(user => this.user = user);
+    this.authService.user.subscribe(user => {
+      this.user = user;
+      this.isUserEnrolled();
+    });
   }
 
   isUserEnrolled() {

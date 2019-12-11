@@ -1,17 +1,16 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { CourseService } from '../services/course.service';
 import { AuthService } from '../auth/auth.service';
 import { User } from '../models/user';
 import { Course } from '../models/course';
 import { RatingValue } from '../models/rating';
-import { ServiceMessage } from '../helpers/service-message';
 import { displaySnackbar } from '../helpers/snackbar';
 
 @Component({
   selector: 'app-rate-course',
   templateUrl: './rate-course.component.html',
-  styleUrls: ['./rate-course.component.scss'],
+  styleUrls: ['./rate-course.component.scss']
 })
 export class RateCourseComponent implements OnInit, OnChanges {
 
