@@ -82,7 +82,7 @@ export class AddEditCourseComponent implements OnInit {
       return this.formSubmitAttempted;
     }
 
-    if (this.editMode) {
+    if (!this.editMode) {
       const isValid = (
         (!field.valid && field.touched) ||
         (field.untouched && this.formSubmitAttempted)
